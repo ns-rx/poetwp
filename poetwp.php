@@ -32,6 +32,9 @@ if ( ! defined( 'WPINC' ) ) {
 // Include the file that defines the custom post type functions.
 require_once plugin_dir_path( __FILE__ ) . 'includes/post-type-functions.php';
 
+// Include the file that defines the admin functions.
+require_once plugin_dir_path( __FILE__ ) . 'admin/admin-functions.php';
+
 // Register activation hook.
 register_activation_hook( __FILE__, 'poetwp_activate' );
 
