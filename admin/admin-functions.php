@@ -32,7 +32,8 @@ function poetwp_poem_details_callback( $post ) {
 
 	// Output the form fields.
 	echo '<label for="poem_date">Date: </label>';
-	echo '<input type="text" id="poem_date" name="poem_date" value="' . esc_attr( $date ) . '" size="25" /><br>';
+	// echo '<input type="text" id="poem_date" name="poem_date" value="' . esc_attr( $date ) . '" size="25" /><br>';
+	echo '<input type="text" id="poem_date" name="poem_date" class="poetwp-datepicker" value="' . esc_attr( $date ) . '" size="25" /><br>';
 	echo '<label for="poem_notes">Notes: </label>';
 	echo '<textarea id="poem_notes" name="poem_notes" rows="3" cols="50">' . esc_textarea( $notes ) . '</textarea>';
 }
@@ -68,3 +69,39 @@ function poetwp_save_poem_details( $post_id ) {
 }
 // Hook the save function to the 'save_post_poem' action.
 add_action( 'save_post_poem', 'poetwp_save_poem_details' );
+
+/**
+ * Enqueue scripts and styles for the datepicker.
+ *
+ * @return void
+ */
+function poetwp_enqueue_datepicker() {
+	// Enqueue jQuery UI Datepicker script and styles.
+	wp_enqueue_script( 'jquery-ui-datepicker' );
+	wp_enqueue_style( 'jquery-ui-css', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css', array(), '1.12.1' );
+}
+
+// Add action to enqueue datepicker scripts and styles.
+add_action( 'admin_enqueue_scripts', 'poetwp_enqueue_datepicker' );
+
+/**
+ * Initialize the datepicker on the poem date field.
+ *
+ * @return void
+ */
+function poetwp_initialize_datepicker() {
+	?>
+	<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$('#poem_date').datepicker({
+			dateFormat: 'd MM yy',
+			changeMonth: true,
+			changeYear: true
+		});
+	});
+	</script>
+	<?php
+}
+
+// Add action to initialize datepicker in the admin footer.
+add_action( 'admin_footer', 'poetwp_initialize_datepicker' );
