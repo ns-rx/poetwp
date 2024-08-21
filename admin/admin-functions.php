@@ -32,10 +32,18 @@ function poetwp_poem_details_callback( $post ) {
 
 	// Output the form fields.
 	echo '<label for="poem_date">Date: </label>';
-	// echo '<input type="text" id="poem_date" name="poem_date" value="' . esc_attr( $date ) . '" size="25" /><br>';
 	echo '<input type="text" id="poem_date" name="poem_date" class="poetwp-datepicker" value="' . esc_attr( $date ) . '" size="25" /><br>';
 	echo '<label for="poem_notes">Notes: </label>';
-	echo '<textarea id="poem_notes" name="poem_notes" rows="3" cols="50">' . esc_textarea( $notes ) . '</textarea>';
+	wp_editor(
+		$notes,
+		'poem_notes',
+		array(
+			'textarea_name' => 'poem_notes',
+			'media_buttons' => false,
+			'textarea_rows' => 5,
+			'teeny'         => true,
+		)
+	);
 }
 
 /**
@@ -64,7 +72,7 @@ function poetwp_save_poem_details( $post_id ) {
 		update_post_meta( $post_id, 'poem_date', sanitize_text_field( $_POST['poem_date'] ) );
 	}
 	if ( isset( $_POST['poem_notes'] ) ) {
-		update_post_meta( $post_id, 'poem_notes', sanitize_textarea_field( $_POST['poem_notes'] ) );
+		update_post_meta( $post_id, 'poem_notes', wp_kses_post( $_POST['poem_notes'] ) );
 	}
 }
 // Hook the save function to the 'save_post_poem' action.

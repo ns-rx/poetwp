@@ -71,7 +71,7 @@ function poetwp_inject_custom_fields_and_title( $content ) {
 	// Prepare the custom fields and title HTML.
 	$custom_content  = '<div class="poem-custom-fields">';
 	$custom_content .= '<p><strong>' . esc_html__( 'Date:', 'poetwp' ) . '</strong> ' . esc_html( $date ) . '</p>';
-	$custom_content .= '<p><strong>' . esc_html__( 'Notes:', 'poetwp' ) . '</strong> ' . esc_html( $notes ) . '</p>';
+	$custom_content .= '<div>' . wp_kses_post( $notes ) . '</div>';
 	$custom_content .= '</div>';
 	$custom_content .= '<h1 class="entry-title">' . esc_html( $title ) . '</h1>';
 
