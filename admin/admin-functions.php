@@ -32,7 +32,7 @@ function poetwp_poem_details_callback( $post ) {
 
 	// Output the form fields.
 	echo '<label for="poem_date">Date: </label>';
-	echo '<input type="text" id="poem_date" name="poem_date" class="poetwp-datepicker" value="' . esc_attr( $date ) . '" size="25" /><br>';
+	echo '<input type="text" id="poem_date" name="poem_date" class="poetwp-datepicker" value="' . esc_attr( $date ) . '" size="25" />';
 	echo '<label for="poem_notes">Notes: </label>';
 	wp_editor(
 		$notes,
@@ -113,3 +113,16 @@ function poetwp_initialize_datepicker() {
 
 // Add action to initialize datepicker in the admin footer.
 add_action( 'admin_footer', 'poetwp_initialize_datepicker' );
+
+/**
+ * Enqueue custom admin styles.
+ *
+ * @return void
+ */
+function poetwp_enqueue_admin_styles() {
+	// Enqueue the custom admin stylesheet.
+	wp_enqueue_style( 'poetwp-admin-styles', plugin_dir_url( __FILE__ ) . 'css/admin-styles.css', array(), '1.0.0' );
+}
+
+// Add action to enqueue admin styles.
+add_action( 'admin_enqueue_scripts', 'poetwp_enqueue_admin_styles' );

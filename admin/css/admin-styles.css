@@ -1,0 +1,9 @@
+#poem_details label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+#poem_date {
+    margin-bottom: 30px;
+}

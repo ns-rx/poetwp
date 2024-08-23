@@ -69,10 +69,13 @@ function poetwp_inject_custom_fields_and_title( $content ) {
 	$notes = get_post_meta( $id, 'poem_notes', true );
 
 	// Prepare the custom fields and title HTML.
-	$custom_content  = '<div class="poem-custom-fields">';
-	$custom_content .= '<p><strong>' . esc_html__( 'Date:', 'poetwp' ) . '</strong> ' . esc_html( $date ) . '</p>';
-	$custom_content .= '<div>' . wp_kses_post( $notes ) . '</div>';
-	$custom_content .= '</div>';
+	$custom_content = '';
+	if ( ! empty( $date ) ) {
+		$custom_content .= '<p><span class="dashicons dashicons-calendar-alt"></span> ' . esc_html( $date ) . '</p>';
+	}
+	if ( ! empty( $notes ) ) {
+		$custom_content .= '<div>' . wp_kses_post( $notes ) . '</div>';
+	}
 	$custom_content .= '<h1 class="entry-title">' . esc_html( $title ) . '</h1>';
 
 	// Prepend the custom fields and title to the content.
