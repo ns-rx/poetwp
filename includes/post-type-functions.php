@@ -21,7 +21,7 @@ function poetwp_register_post_type() {
 			),
 			'public'       => true,
 			'has_archive'  => true,
-			'supports'     => array( 'title', 'editor', 'thumbnail', 'author', 'excerpt' ),
+			'supports'     => array( 'title', 'editor', 'thumbnail', 'author', 'excerpt', 'revisions' ),
 			'menu_icon'    => 'dashicons-format-aside',
 			'rewrite'      => array(
 				'slug' => 'poems',

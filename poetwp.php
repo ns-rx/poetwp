@@ -35,6 +35,9 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/post-type-functions.php';
 // Include the file that defines the admin functions.
 require_once plugin_dir_path( __FILE__ ) . 'admin/admin-functions.php';
 
+// Include the file that defines the public functions.
+require_once plugin_dir_path( __FILE__ ) . 'public/public-functions.php';
+
 // Register activation hook.
 register_activation_hook( __FILE__, 'poetwp_activate' );
 
