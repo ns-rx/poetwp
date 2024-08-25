@@ -121,7 +121,7 @@ add_action( 'admin_footer', 'poetwp_initialize_datepicker' );
  */
 function poetwp_enqueue_admin_styles() {
 	// Enqueue the custom admin stylesheet.
-	wp_enqueue_style( 'poetwp-admin-styles', plugin_dir_url( __FILE__ ) . 'css/admin-styles.css', array(), '1.0.0' );
+	wp_enqueue_style( 'poetwp-admin-styles', plugin_dir_url( __FILE__ ) . 'css/poetwp-admin.css', array(), '1.0.0' );
 }
 
 // Add action to enqueue admin styles.

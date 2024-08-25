@@ -32,6 +32,9 @@ if ( ! defined( 'WPINC' ) ) {
 // Include the file that defines the custom post type functions.
 require_once plugin_dir_path( __FILE__ ) . 'includes/post-type-functions.php';
 
+// Include the file that creates demo poem.
+require_once plugin_dir_path( __FILE__ ) . 'includes/demo-poem.php';
+
 // Include the file that defines the admin functions.
 require_once plugin_dir_path( __FILE__ ) . 'admin/admin-functions.php';
 
@@ -51,4 +54,7 @@ function poetwp_activate() {
 
 	// Flush rewrite rules to ensure custom post type is properly registered.
 	flush_rewrite_rules();
+
+	// Create demo poem.
+	poetwp_create_demo_poem();
 }

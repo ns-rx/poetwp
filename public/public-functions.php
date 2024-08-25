@@ -14,7 +14,7 @@
  * @return void
  */
 function poetwp_enqueue_public_styles() {
-	wp_enqueue_style( 'poetwp-public-styles', plugin_dir_url( __FILE__ ) . 'css/public-styles.css', array(), '1.0.0', 'all' );
+	wp_enqueue_style( 'poetwp-public-styles', plugin_dir_url( __FILE__ ) . 'css/poetwp-public.css', array(), '1.0.0', 'all' );
 }
 
 // Add action to enqueue public styles.
