@@ -126,3 +126,21 @@ function poetwp_enqueue_admin_styles() {
 
 // Add action to enqueue admin styles.
 add_action( 'admin_enqueue_scripts', 'poetwp_enqueue_admin_styles' );
+
+/**
+ * Enqueue custom verse styles script for the block editor.
+ *
+ * @return void
+ */
+function poetwp_enqueue_admin_script() {
+	wp_enqueue_script(
+		'poetwp-admin-script',
+		plugin_dir_url( __FILE__ ) . 'js/poetwp-admin.js',
+		array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
+		filemtime( plugin_dir_path( __FILE__ ) . 'js/poetwp-admin.js' ),
+		true
+	);
+}
+
+// Add action to enqueue custom verse styles script.
+add_action( 'enqueue_block_editor_assets', 'poetwp_enqueue_admin_script' );
