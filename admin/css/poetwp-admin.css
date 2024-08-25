@@ -8,6 +8,6 @@
     margin-bottom: 30px;
 }
 
-.wp-block-verse.is-style-no-padding {
+pre.wp-block-verse.is-style-no-padding {
     padding: 0 !important;
 }

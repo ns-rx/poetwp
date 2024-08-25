@@ -78,19 +78,43 @@ function poetwp_save_poem_details( $post_id ) {
 // Hook the save function to the 'save_post_poem' action.
 add_action( 'save_post_poem', 'poetwp_save_poem_details' );
 
+// Add action to enqueue datepicker scripts and styles.
+add_action( 'admin_enqueue_scripts', 'poetwp_enqueue_admin_assets' );
+
 /**
- * Enqueue scripts and styles for the datepicker.
+ * Enqueue admin scripts and styles.
  *
  * @return void
  */
-function poetwp_enqueue_datepicker() {
+function poetwp_enqueue_admin_assets() {
 	// Enqueue jQuery UI Datepicker script and styles.
 	wp_enqueue_script( 'jquery-ui-datepicker' );
 	wp_enqueue_style( 'jquery-ui-css', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css', array(), '1.12.1' );
+
+	// Enqueue the custom admin stylesheet.
+	wp_enqueue_style( 'poetwp-admin-styles', plugin_dir_url( __FILE__ ) . 'css/poetwp-admin.css', array(), '1.0.0' );
 }
 
-// Add action to enqueue datepicker scripts and styles.
-add_action( 'admin_enqueue_scripts', 'poetwp_enqueue_datepicker' );
+// Add action to enqueue admin assets.
+add_action( 'admin_enqueue_scripts', 'poetwp_enqueue_admin_assets' );
+
+/**
+ * Enqueue block editor assets.
+ *
+ * @return void
+ */
+function poetwp_enqueue_block_editor_assets() {
+	wp_enqueue_script(
+		'poetwp-admin-script',
+		plugin_dir_url( __FILE__ ) . 'js/poetwp-admin.js',
+		array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
+		filemtime( plugin_dir_path( __FILE__ ) . 'js/poetwp-admin.js' ),
+		true
+	);
+}
+
+// Add action to enqueue block editor assets.
+add_action( 'enqueue_block_editor_assets', 'poetwp_enqueue_block_editor_assets' );
 
 /**
  * Initialize the datepicker on the poem date field.
@@ -113,34 +137,3 @@ function poetwp_initialize_datepicker() {
 
 // Add action to initialize datepicker in the admin footer.
 add_action( 'admin_footer', 'poetwp_initialize_datepicker' );
-
-/**
- * Enqueue custom admin styles.
- *
- * @return void
- */
-function poetwp_enqueue_admin_styles() {
-	// Enqueue the custom admin stylesheet.
-	wp_enqueue_style( 'poetwp-admin-styles', plugin_dir_url( __FILE__ ) . 'css/poetwp-admin.css', array(), '1.0.0' );
-}
-
-// Add action to enqueue admin styles.
-add_action( 'admin_enqueue_scripts', 'poetwp_enqueue_admin_styles' );
-
-/**
- * Enqueue custom verse styles script for the block editor.
- *
- * @return void
- */
-function poetwp_enqueue_admin_script() {
-	wp_enqueue_script(
-		'poetwp-admin-script',
-		plugin_dir_url( __FILE__ ) . 'js/poetwp-admin.js',
-		array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
-		filemtime( plugin_dir_path( __FILE__ ) . 'js/poetwp-admin.js' ),
-		true
-	);
-}
-
-// Add action to enqueue custom verse styles script.
-add_action( 'enqueue_block_editor_assets', 'poetwp_enqueue_admin_script' );
