@@ -15,9 +15,16 @@
  */
 function poetwp_create_demo_poem() {
 	// Check if the demo poem already exists.
-	$existing_poem = get_page_by_title( 'Demo Poem', OBJECT, 'poem' );
+	$existing_poem = new WP_Query(
+		array(
+			'post_type'      => 'poem',
+			'post_status'    => 'any',
+			'title'          => 'Demo Poem',
+			'posts_per_page' => 1,
+		)
+	);
 
-	if ( ! $existing_poem ) {
+	if ( ! $existing_poem->have_posts() ) {
 		// Prepare the poem content with Gutenberg blocks.
 		$poem_content = '
         <!-- wp:verse {"className":"is-style-no-padding","backgroundColor":"base-3"} -->
