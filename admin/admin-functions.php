@@ -89,7 +89,7 @@ add_action( 'admin_enqueue_scripts', 'poetwp_enqueue_admin_assets' );
 function poetwp_enqueue_admin_assets() {
 	// Enqueue jQuery UI Datepicker script and styles.
 	wp_enqueue_script( 'jquery-ui-datepicker' );
-	wp_enqueue_style( 'jquery-ui-css', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css', array(), '1.12.1' );
+	wp_enqueue_style( 'jquery-ui-css', 'https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css', array(), '1.13.3' );
 
 	// Enqueue the custom admin stylesheet.
 	wp_enqueue_style( 'poetwp-admin-styles', plugin_dir_url( __FILE__ ) . 'css/poetwp-admin.css', array(), '1.0.0' );
