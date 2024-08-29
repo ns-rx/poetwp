@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The plugin bootstrap file
  *
@@ -15,7 +14,7 @@
  * @wordpress-plugin
  * Plugin Name:       PoetWP
  * Plugin URI:        https://nataliesmith.dev
- * Description:       WordPress plugin to display poems on your website.
+ * Description:       Easily add poems to your WordPress site.
  * Version:           1.0.0
  * Author:            Natalie Smith
  * Author URI:        https://nataliesmith.dev/
@@ -30,53 +29,32 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-/**
- * Currently plugin version.
- * Start at version 1.0.0 and use SemVer - https://semver.org
- * Rename this for your plugin and update it as you release new versions.
- */
-define( 'POETWP_VERSION', '1.0.0' );
+// Include the file that defines the custom post type functions.
+require_once plugin_dir_path( __FILE__ ) . 'includes/post-type-functions.php';
+
+// Include the file that creates demo poem.
+require_once plugin_dir_path( __FILE__ ) . 'includes/demo-poem.php';
+
+// Include the file that defines the admin functions.
+require_once plugin_dir_path( __FILE__ ) . 'admin/admin-functions.php';
+
+// Include the file that defines the public functions.
+require_once plugin_dir_path( __FILE__ ) . 'public/public-functions.php';
+
+// Register activation hook.
+register_activation_hook( __FILE__, 'poetwp_activate' );
 
 /**
- * The code that runs during plugin activation.
- * This action is documented in includes/class-poetwp-activator.php
+ * Activation function for the plugin
  */
-function activate_poetwp() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-poetwp-activator.php';
-	Poetwp_Activator::activate();
+function poetwp_activate() {
+
+	// Register the custom post type.
+	poetwp_register_post_type();
+
+	// Flush rewrite rules to ensure custom post type is properly registered.
+	flush_rewrite_rules();
+
+	// Create demo poem.
+	poetwp_create_demo_poem();
 }
-
-/**
- * The code that runs during plugin deactivation.
- * This action is documented in includes/class-poetwp-deactivator.php
- */
-function deactivate_poetwp() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-poetwp-deactivator.php';
-	Poetwp_Deactivator::deactivate();
-}
-
-register_activation_hook( __FILE__, 'activate_poetwp' );
-register_deactivation_hook( __FILE__, 'deactivate_poetwp' );
-
-/**
- * The core plugin class that is used to define internationalization,
- * admin-specific hooks, and public-facing site hooks.
- */
-require plugin_dir_path( __FILE__ ) . 'includes/class-poetwp.php';
-
-/**
- * Begins execution of the plugin.
- *
- * Since everything within the plugin is registered via hooks,
- * then kicking off the plugin from this point in the file does
- * not affect the page life cycle.
- *
- * @since    1.0.0
- */
-function run_poetwp() {
-
-	$plugin = new Poetwp();
-	$plugin->run();
-
-}
-run_poetwp();

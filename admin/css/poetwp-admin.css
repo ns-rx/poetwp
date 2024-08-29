@@ -1,4 +1,13 @@
-/**
- * All of the CSS for your admin-specific functionality should be
- * included in this file.
- */
+#poem_details label {
+	display: block;
+	font-weight: 500;
+	margin-bottom: 8px;
+}
+
+#poem_date {
+	margin-bottom: 30px;
+}
+
+pre.wp-block-verse.is-style-no-padding {
+	padding: 0 !important;
+}
