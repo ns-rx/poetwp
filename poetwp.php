@@ -29,17 +29,25 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+if ( ! defined( 'POETWP_DIR' ) ) {
+	define( 'POETWP_DIR', plugin_dir_path( __FILE__ ) );
+}
+
+if ( ! defined( 'POETWP_URL' ) ) {
+	define( 'POETWP_URL', plugin_dir_url( __FILE__ ) );
+}
+
 // Include the file that defines the custom post type functions.
-require_once plugin_dir_path( __FILE__ ) . 'includes/post-type-functions.php';
+require_once POETWP_DIR . 'includes/post-type-functions.php';
 
 // Include the file that creates demo poem.
-require_once plugin_dir_path( __FILE__ ) . 'includes/demo-poem.php';
+require_once POETWP_DIR . 'includes/demo-poem.php';
 
 // Include the file that defines the admin functions.
-require_once plugin_dir_path( __FILE__ ) . 'admin/admin-functions.php';
+require_once POETWP_DIR . 'admin/admin-functions.php';
 
 // Include the file that defines the public functions.
-require_once plugin_dir_path( __FILE__ ) . 'public/public-functions.php';
+require_once POETWP_DIR . 'public/public-functions.php';
 
 // Register activation hook.
 register_activation_hook( __FILE__, 'poetwp_activate' );
