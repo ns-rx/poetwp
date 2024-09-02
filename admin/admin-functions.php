@@ -4,8 +4,7 @@
  *
  * @link       https://nataliesmith.dev
  * @since      1.0.0
- * @package    Poetwp
- * @subpackage Poetwp/admin
+ * @package    Poetwp\Admin
  */
 
 /**
