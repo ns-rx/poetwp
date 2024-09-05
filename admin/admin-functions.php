@@ -30,9 +30,11 @@ function poetwp_poem_details_callback( $post ) {
 	$notes = get_post_meta( $post->ID, 'poem_notes', true );
 
 	// Output the form fields.
-	echo '<label for="poem_date">Date: </label>';
-	echo '<input type="text" id="poem_date" name="poem_date" class="poetwp-datepicker" value="' . esc_attr( $date ) . '" size="25" />';
-	echo '<label for="poem_notes">Notes: </label>';
+	?>
+	<label for="poem_date"><?php esc_html_e( 'Date:', 'poetwp' ); ?></label>
+	<input type="text" id="poem_date" name="poem_date" class="poetwp-datepicker" value="<?php echo esc_attr( $date ); ?>" size="25" />
+	<label for="poem_notes"><?php esc_html_e( 'Notes:', 'poetwp' ); ?></label>
+	<?php
 	wp_editor(
 		$notes,
 		'poem_notes',
