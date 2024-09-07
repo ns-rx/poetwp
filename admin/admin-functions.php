@@ -93,7 +93,7 @@ function poetwp_enqueue_admin_assets() {
 	wp_enqueue_style( 'jquery-ui-css', 'https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css', array(), '1.13.3' );
 
 	// Enqueue the custom admin stylesheet.
-	wp_enqueue_style( 'poetwp-admin-styles', plugin_dir_url( __FILE__ ) . 'css/poetwp-admin.css', array(), '1.0.0' );
+	wp_enqueue_style( 'poetwp-admin-styles', POETWP_URL . 'admin/css/poetwp-admin.css', array(), '1.0.0' );
 }
 
 // Add action to enqueue admin assets.
@@ -107,9 +107,9 @@ add_action( 'admin_enqueue_scripts', 'poetwp_enqueue_admin_assets' );
 function poetwp_enqueue_block_editor_assets() {
 	wp_enqueue_script(
 		'poetwp-admin-script',
-		plugin_dir_url( __FILE__ ) . 'js/poetwp-admin.js',
+		POETWP_URL . 'admin/js/poetwp-admin.js',
 		array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
-		filemtime( plugin_dir_path( __FILE__ ) . 'js/poetwp-admin.js' ),
+		filemtime( POETWP_DIR . 'admin/js/poetwp-admin.js' ),
 		true
 	);
 }
