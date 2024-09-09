@@ -13,16 +13,17 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 }
 
 /**
- * Deletes all poems from the database when the plugin is uninstalled.
+ * Deletes demo from the database when the plugin is uninstalled.
  */
 $args = array(
 	'post_type'      => 'poem',
-	'posts_per_page' => -1,
 	'post_status'    => 'any',
+	'title'          => 'Demo Poem: Windswept',
+	'posts_per_page' => 1,
 );
 
-$poems = get_posts( $args );
+$demo_poem = get_posts( $args );
 
-foreach ( $poems as $poem ) {
-	wp_delete_post( $poem->ID, true );
+if ( ! empty( $demo_poem ) ) {
+	wp_delete_post( $demo_poem[0]->ID, true );
 }
