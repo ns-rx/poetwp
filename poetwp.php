@@ -16,6 +16,8 @@
  * Plugin URI:        https://nataliesmith.dev
  * Description:       Easily add poems to your WordPress site.
  * Version:           1.0.0
+ * Requires PHP:      8.2
+ * Requires at least: 6.6
  * Author:            Natalie Smith
  * Author URI:        https://nataliesmith.dev/
  * License:           GPL-2.0+
