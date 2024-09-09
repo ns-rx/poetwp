@@ -18,7 +18,7 @@ function poetwp_create_demo_poem() {
 		array(
 			'post_type'      => 'poem',
 			'post_status'    => 'any',
-			'title'          => 'Demo Poem',
+			'title'          => 'Demo Poem: Windswept',
 			'posts_per_page' => 1,
 		)
 	);
