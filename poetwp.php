@@ -18,7 +18,7 @@
  * Version:           1.0.0
  * Author:            Natalie Smith
  * Author URI:        https://nataliesmith.dev/
- * License:           GPL-2.0+
+ * License:           GPL-2.0-or-later
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       poetwp
  * Domain Path:       /languages
