@@ -13,12 +13,22 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 }
 
 /**
+ * Includes the main file.
+ */
+require_once 'poetwp.php';
+
+/**
+ * Includes the Demo Poem class file.
+ */
+require_once POETWP_DIR . 'includes/class-demo-poem.php';
+
+/**
  * Deletes demo from the database when the plugin is uninstalled.
  */
 $args = array(
-	'post_type'      => 'poem',
+	'post_type'      => Demo_Poem::$post_type,
 	'post_status'    => 'any',
-	'title'          => 'Demo Poem: Windswept',
+	'title'          => Demo_Poem::$post_title,
 	'posts_per_page' => 1,
 );
 
