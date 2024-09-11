@@ -68,3 +68,18 @@ function poetwp_activate() {
 	// Create demo poem.
 	poetwp_create_demo_poem();
 }
+
+// Register deactivation hook.
+register_deactivation_hook( __FILE__, 'poetwp_deactivate' );
+
+/**
+ * Deactivation function for the plugin.
+ * This function removes the custom 'poem' post type and flushes the rewrite rules.
+ */
+function poetwp_deactivate() {
+	// Remove the custom post type.
+	unregister_post_type( 'poem' );
+
+	// Flush rewrite rules.
+	flush_rewrite_rules();
+}
