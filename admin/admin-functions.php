@@ -70,10 +70,10 @@ function poetwp_save_poem_details( $post_id ) {
 
 	// Sanitize and save the meta data.
 	if ( isset( $_POST['poem_date'] ) ) {
-		update_post_meta( $post_id, 'poem_date', sanitize_text_field( $_POST['poem_date'] ) );
+		update_post_meta( $post_id, 'poem_date', sanitize_text_field( wp_unslash( $_POST['poem_date'] ) ) );
 	}
 	if ( isset( $_POST['poem_notes'] ) ) {
-		update_post_meta( $post_id, 'poem_notes', wp_kses_post( $_POST['poem_notes'] ) );
+		update_post_meta( $post_id, 'poem_notes', wp_kses_post( wp_unslash( $_POST['poem_notes'] ) ) );
 	}
 }
 // Hook the save function to the 'save_post_poem' action.
